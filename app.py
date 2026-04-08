@@ -98,7 +98,8 @@ if st.button("Check Indexing Now"):
             color = 'lightgreen' if '✅' in val else 'salmon'
             return f'background-color: {color}'
 
-        st.dataframe(df.style.applymap(color_status, subset=['Indexing Status']), use_container_width=True)
+        # ERROR FIXED HERE: applymap ko map se replace kar diya gaya hai
+        st.dataframe(df.style.map(color_status, subset=['Indexing Status']), use_container_width=True)
         
         # Download CSV
         csv = df.to_csv(index=False).encode('utf-8')
